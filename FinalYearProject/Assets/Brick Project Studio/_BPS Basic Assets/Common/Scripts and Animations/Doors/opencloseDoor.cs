@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace SojaExiles
 
@@ -12,10 +14,13 @@ namespace SojaExiles
 		public bool open;
 		public Transform Player;
 
+		public TMP_Text openDoor;
+
 		void Start()
 		{
 			open = false;
 		}
+
 
 		void OnMouseOver()
 		{
@@ -23,28 +28,55 @@ namespace SojaExiles
 				if (Player)
 				{
 					float dist = Vector3.Distance(Player.position, transform.position);
-					if (dist < 15)
+					if (dist < 2)
 					{
 						if (open == false)
 						{
-							if (Input.GetMouseButtonDown(0))
+							openDoor.text = "Press [E] to open door";
+
+							//if (Input.GetMouseButtonDown(0))
+							if (Input.GetKeyDown("e"))
 							{
 								StartCoroutine(opening());
+								//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 							}
 						}
-						else
-						{
-							if (open == true)
+						else if (open == true)
+						//{
+							//if (open == true)
 							{
-								if (Input.GetMouseButtonDown(0))
+								openDoor.text = "Press [E] to close door";
+
+								//if (Input.GetMouseButtonDown(0))
+								if (Input.GetKeyDown("e"))
 								{
 									StartCoroutine(closing());
 								}
 							}
-
-						}
-
 					}
+
+					if (dist > 2)
+					{
+						if(open == false || open == true)
+						{
+							openDoor.text = "";
+						}
+							
+					}
+
+						//else if (dist > 2 && open == true)
+						//{
+						//	openDoor.text = "";
+						//}
+
+						//}
+
+					//}
+
+					//if (dist > 2)
+					//{
+						//openDoor.text = "";
+					//}
 				}
 
 			}
