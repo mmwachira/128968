@@ -14,6 +14,7 @@ namespace SojaExiles
 		public bool open;
 		public Transform Player;
 
+		public GameObject opendoor;
 		public TMP_Text openDoor;
 
 		void Start()
@@ -32,6 +33,7 @@ namespace SojaExiles
 					{
 						if (open == false)
 						{
+							opendoor.SetActive(true);
 							openDoor.text = "Press [E] to open door";
 
 							//if (Input.GetMouseButtonDown(0))
@@ -45,6 +47,7 @@ namespace SojaExiles
 						//{
 							//if (open == true)
 							{
+								opendoor.SetActive(true);
 								openDoor.text = "Press [E] to close door";
 
 								//if (Input.GetMouseButtonDown(0))
@@ -59,6 +62,7 @@ namespace SojaExiles
 					{
 						if(open == false || open == true)
 						{
+							opendoor.SetActive(false);
 							openDoor.text = "";
 						}
 							

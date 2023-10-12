@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+    public LevelLoader levelloader;
     public Animator transition;
     public float transitionTime = 1f;
-    
 
     // Update is called once per frame
     void Update()
@@ -18,9 +18,15 @@ public class LevelLoader : MonoBehaviour
        // }
     }
 
+
     void OnCollisionEnter(Collision collision)
         {
             LoadNextLevel();
+        }
+
+    public void LoadFirstLevel()
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
 
     public void LoadNextLevel()
@@ -29,7 +35,7 @@ public class LevelLoader : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    public IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");
 
