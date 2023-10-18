@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public GameObject pausemenu;
     public GameObject menubackground;
     public GameObject player;
+    public AudioSource menumusic;
 
     void Start()
     {
@@ -29,7 +30,9 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame ()
     {
+        menumusic.Stop();
         levelloader.LoadFirstLevel();
+        
         //gameObject.GetComponent<LevelLoader>().LoadFirstLevel();
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
