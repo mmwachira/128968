@@ -817,8 +817,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 984114627}
-        m_TargetAssemblyTypeName: PlayFabManager, Assembly-CSharp
+      - m_Target: {fileID: 1059425734}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: SwitchToLoginTab
         m_Mode: 1
         m_Arguments:
@@ -2636,8 +2636,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 984114627}
-        m_TargetAssemblyTypeName: PlayFabManager, Assembly-CSharp
+      - m_Target: {fileID: 1059425734}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: SwitchToSignUpTab
         m_Mode: 1
         m_Arguments:
@@ -2698,7 +2698,7 @@ GameObject:
   - component: {fileID: 909809880}
   - component: {fileID: 909809879}
   - component: {fileID: 909809878}
-  - component: {fileID: 909809877}
+  - component: {fileID: 909809881}
   m_Layer: 5
   m_Name: LoginTab
   m_TagString: Untagged
@@ -2732,29 +2732,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.000011444089}
   m_SizeDelta: {x: 392.1611, y: 346.04}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &909809877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909809875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d56d48002e7f14f9345fc4cf7453d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  signUpTab: {fileID: 0}
-  logInTab: {fileID: 0}
-  startPanel: {fileID: 0}
-  HUD: {fileID: 0}
-  username: {fileID: 0}
-  userEmail: {fileID: 0}
-  userPassword: {fileID: 0}
-  userEmailLogin: {fileID: 0}
-  userPasswordLogin: {fileID: 0}
-  errorSignUp: {fileID: 0}
-  errorLogin: {fileID: 0}
 --- !u!114 &909809878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2807,6 +2784,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909809875}
   m_CullTransparentMesh: 1
+--- !u!114 &909809881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909809875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9994f5d24012dc4b9349ad0ad3d95ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signUpTab: {fileID: 0}
+  logInTab: {fileID: 0}
+  startPanel: {fileID: 0}
+  HUD: {fileID: 0}
+  username: {fileID: 0}
+  userEmail: {fileID: 0}
+  userPassword: {fileID: 0}
+  userEmailLogin: {fileID: 0}
+  userPasswordLogin: {fileID: 0}
+  errorSignUp: {fileID: 0}
+  errorLogin: {fileID: 0}
+  levelloader: {fileID: 0}
+  pausemenu: {fileID: 0}
+  menubackground: {fileID: 0}
+  player: {fileID: 0}
+  bgmusic: {fileID: 0}
 --- !u!1 &984114622
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,7 +2925,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 984114622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d56d48002e7f14f9345fc4cf7453d8, type: 3}
+  m_Script: {fileID: 11500000, guid: b9994f5d24012dc4b9349ad0ad3d95ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   signUpTab: {fileID: 1755790584}
@@ -2934,6 +2939,11 @@ MonoBehaviour:
   userPasswordLogin: {fileID: 688423891}
   errorSignUp: {fileID: 578818473}
   errorLogin: {fileID: 650934362}
+  levelloader: {fileID: 0}
+  pausemenu: {fileID: 0}
+  menubackground: {fileID: 0}
+  player: {fileID: 0}
+  bgmusic: {fileID: 0}
 --- !u!1 &1002052309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,6 +2996,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &1059425733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1059425735}
+  - component: {fileID: 1059425734}
+  m_Layer: 0
+  m_Name: MenuController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1059425734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059425733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9994f5d24012dc4b9349ad0ad3d95ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signUpTab: {fileID: 1755790584}
+  logInTab: {fileID: 909809875}
+  startPanel: {fileID: 1168296292}
+  HUD: {fileID: 0}
+  username: {fileID: 661144792}
+  userEmail: {fileID: 1625532791}
+  userPassword: {fileID: 1995812595}
+  userEmailLogin: {fileID: 1869644952}
+  userPasswordLogin: {fileID: 688423891}
+  errorSignUp: {fileID: 578818473}
+  errorLogin: {fileID: 650934362}
+  levelloader: {fileID: 0}
+  pausemenu: {fileID: 0}
+  menubackground: {fileID: 0}
+  player: {fileID: 0}
+  bgmusic: {fileID: 0}
+--- !u!4 &1059425735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059425733}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 439.26788, y: 182.6858, z: 11059.844}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1089991247
 GameObject:
   m_ObjectHideFlags: 0
@@ -3471,7 +3541,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1168296292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d56d48002e7f14f9345fc4cf7453d8, type: 3}
+  m_Script: {fileID: 11500000, guid: b9994f5d24012dc4b9349ad0ad3d95ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   signUpTab: {fileID: 0}
@@ -3485,6 +3555,11 @@ MonoBehaviour:
   userPasswordLogin: {fileID: 0}
   errorSignUp: {fileID: 0}
   errorLogin: {fileID: 0}
+  levelloader: {fileID: 0}
+  pausemenu: {fileID: 0}
+  menubackground: {fileID: 0}
+  player: {fileID: 0}
+  bgmusic: {fileID: 0}
 --- !u!1 &1269000065
 GameObject:
   m_ObjectHideFlags: 0
@@ -4197,8 +4272,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 984114627}
-        m_TargetAssemblyTypeName: PlayFabManager, Assembly-CSharp
+      - m_Target: {fileID: 1059425734}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: LogIn
         m_Mode: 1
         m_Arguments:
@@ -4330,8 +4405,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 984114627}
-        m_TargetAssemblyTypeName: PlayFabManager, Assembly-CSharp
+      - m_Target: {fileID: 1059425734}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: SignUp
         m_Mode: 1
         m_Arguments:
@@ -4653,7 +4728,7 @@ GameObject:
   - component: {fileID: 1755790589}
   - component: {fileID: 1755790588}
   - component: {fileID: 1755790587}
-  - component: {fileID: 1755790586}
+  - component: {fileID: 1755790590}
   m_Layer: 5
   m_Name: SignUpTab
   m_TagString: Untagged
@@ -4687,29 +4762,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.000011444089}
   m_SizeDelta: {x: 392.1611, y: 346.04}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1755790586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755790584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d56d48002e7f14f9345fc4cf7453d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  signUpTab: {fileID: 0}
-  logInTab: {fileID: 0}
-  startPanel: {fileID: 0}
-  HUD: {fileID: 0}
-  username: {fileID: 0}
-  userEmail: {fileID: 0}
-  userPassword: {fileID: 0}
-  userEmailLogin: {fileID: 0}
-  userPasswordLogin: {fileID: 0}
-  errorSignUp: {fileID: 0}
-  errorLogin: {fileID: 0}
 --- !u!114 &1755790587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4762,6 +4814,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755790584}
   m_CullTransparentMesh: 1
+--- !u!114 &1755790590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755790584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9994f5d24012dc4b9349ad0ad3d95ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signUpTab: {fileID: 0}
+  logInTab: {fileID: 0}
+  startPanel: {fileID: 0}
+  HUD: {fileID: 0}
+  username: {fileID: 0}
+  userEmail: {fileID: 0}
+  userPassword: {fileID: 0}
+  userEmailLogin: {fileID: 0}
+  userPasswordLogin: {fileID: 0}
+  errorSignUp: {fileID: 0}
+  errorLogin: {fileID: 0}
+  levelloader: {fileID: 0}
+  pausemenu: {fileID: 0}
+  menubackground: {fileID: 0}
+  player: {fileID: 0}
+  bgmusic: {fileID: 0}
 --- !u!1 &1869644950
 GameObject:
   m_ObjectHideFlags: 0
@@ -5403,10 +5483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d56d48002e7f14f9345fc4cf7453d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  signUpTab: {fileID: 0}
-  logInTab: {fileID: 0}
   startPanel: {fileID: 0}
-  HUD: {fileID: 0}
   username: {fileID: 0}
   userEmail: {fileID: 0}
   userPassword: {fileID: 0}
@@ -5414,6 +5491,9 @@ MonoBehaviour:
   userPasswordLogin: {fileID: 0}
   errorSignUp: {fileID: 0}
   errorLogin: {fileID: 0}
+  playerLevel: 0
+  gameLevel: 0
+  playerHighscore: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5422,3 +5502,4 @@ SceneRoots:
   - {fileID: 1089991249}
   - {fileID: 984114626}
   - {fileID: 499472241}
+  - {fileID: 1059425735}
