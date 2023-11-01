@@ -2811,7 +2811,7 @@ MonoBehaviour:
   pausemenu: {fileID: 0}
   menubackground: {fileID: 0}
   player: {fileID: 0}
-  bgmusic: {fileID: 0}
+  menumusic: {fileID: 0}
 --- !u!1 &984114622
 GameObject:
   m_ObjectHideFlags: 0
@@ -2943,7 +2943,7 @@ MonoBehaviour:
   pausemenu: {fileID: 0}
   menubackground: {fileID: 0}
   player: {fileID: 0}
-  bgmusic: {fileID: 0}
+  menumusic: {fileID: 0}
 --- !u!1 &1002052309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,7 +3040,7 @@ MonoBehaviour:
   pausemenu: {fileID: 0}
   menubackground: {fileID: 0}
   player: {fileID: 0}
-  bgmusic: {fileID: 0}
+  menumusic: {fileID: 0}
 --- !u!4 &1059425735
 Transform:
   m_ObjectHideFlags: 0
@@ -3559,7 +3559,7 @@ MonoBehaviour:
   pausemenu: {fileID: 0}
   menubackground: {fileID: 0}
   player: {fileID: 0}
-  bgmusic: {fileID: 0}
+  menumusic: {fileID: 0}
 --- !u!1 &1269000065
 GameObject:
   m_ObjectHideFlags: 0
@@ -4487,10 +4487,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 984114626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0025024, y: 0}
-  m_SizeDelta: {x: 880.41, y: 414}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1729989457
 MonoBehaviour:
@@ -4841,7 +4841,7 @@ MonoBehaviour:
   pausemenu: {fileID: 0}
   menubackground: {fileID: 0}
   player: {fileID: 0}
-  bgmusic: {fileID: 0}
+  menumusic: {fileID: 0}
 --- !u!1 &1869644950
 GameObject:
   m_ObjectHideFlags: 0
@@ -5483,7 +5483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d56d48002e7f14f9345fc4cf7453d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPanel: {fileID: 0}
   username: {fileID: 0}
   userEmail: {fileID: 0}
   userPassword: {fileID: 0}

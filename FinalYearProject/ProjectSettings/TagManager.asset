@@ -7,6 +7,8 @@ TagManager:
   - Password
   - MainMenu
   - LevelLoader
+  - TrashCanLight
+  - Trash
   layers:
   - Default
   - TransparentFX

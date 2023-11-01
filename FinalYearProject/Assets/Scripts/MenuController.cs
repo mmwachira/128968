@@ -23,7 +23,7 @@ public class MenuController : MonoBehaviour
     public GameObject pausemenu;
     public GameObject menubackground;
     public GameObject player;
-    public AudioSource bgmusic;
+    public AudioSource menumusic;
 
     void Start()
     {
@@ -139,7 +139,7 @@ public class MenuController : MonoBehaviour
 
     public void PlayGame ()
     {
-        bgmusic.Stop();
+        menumusic.Stop();
         levelloader.LoadFirstLevel();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
