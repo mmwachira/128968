@@ -382,6 +382,7 @@
 "Assets/Scripts/LevelLoader.cs"
 "Assets/Scripts/LoginReg.cs"
 "Assets/Scripts/MenuController.cs"
+"Assets/Scripts/ObjectivesManager.cs"
 "Assets/Scripts/opencloseDoor.cs"
 "Assets/Scripts/PhysicsPickup.cs"
 "Assets/Scripts/PlayFabManager.cs"

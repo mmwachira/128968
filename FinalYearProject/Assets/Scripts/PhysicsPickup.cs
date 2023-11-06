@@ -47,61 +47,8 @@ public class PhysicsPickup : MonoBehaviour
         }
     }
 
-    // void OnMouseOver()
-    // {
-    //   {
-    //           if (Player)
-	// 	  		{
-	// 	  			float dist = Vector3.Distance(Player.position, transform.position);
-	// 	  			if (dist < 3)
-	// 	  			{
-    //                       if (picked == false)
-    //                       {
-    //                         updatetext.SetActive(true);
-	// 	  				    updateText.text = "Press [E] to pick up object";
-    //                       }  
-							
-	// 	  			}
-
-	// 	  			if (dist > 3)
-	// 	  			{
-    //                       if(picked == false || picked == true)
-    //                       {
-    //                         updatetext.SetActive(false);
-	// 	  				    updateText.text = "";
-    //                       }
-						
-	// 	  			}
-    //             }
-    //     }  
-    // }
-
     void FixedUpdate()
     {
-        if (Player)
-		  		{
-		  			float dist = Vector3.Distance(Player.position, transform.position);
-		  			if (dist < 2)
-		  			{
-                          if (picked == false)
-                          {
-                            updatetext.SetActive(true);
-		  				    updateText.text = "Press [E] to pick up object";
-                          }  
-							
-		  			}
-
-		  			if (dist > 2)
-		  			{
-                          if(picked == false || picked == true)
-                          {
-                            updatetext.SetActive(false);
-		  				    updateText.text = "";
-                          }
-						
-		  			}
-                }
-
         if(CurrentObject)
         {
             Vector3 DirectionToPoint = PickupTarget.position - CurrentObject.position;

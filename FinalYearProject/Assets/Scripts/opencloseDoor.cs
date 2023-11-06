@@ -68,19 +68,6 @@ namespace SojaExiles
 							
 					}
 
-						//else if (dist > 2 && open == true)
-						//{
-						//	openDoor.text = "";
-						//}
-
-						//}
-
-					//}
-
-					//if (dist > 2)
-					//{
-						//openDoor.text = "";
-					//}
 				}
 
 			}
