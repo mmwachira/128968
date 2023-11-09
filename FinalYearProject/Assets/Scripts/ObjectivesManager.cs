@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ObjectivesManager : MonoBehaviour
@@ -24,7 +25,15 @@ public class ObjectivesManager : MonoBehaviour
         objectiveDisplay.SetActive(true);
         objectiveText.SetActive(true);
         objectiveDisplay.GetComponent<Animation>().Play("ObjectiveDisplayAnim");
-        objectiveText.GetComponent<TMP_Text>().text = "Objective: Collect all the trash in the apartment!";
+        if(SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            objectiveText.GetComponent<TMP_Text>().text = "Objective: Place all the dirty plates in the sink!";
+        }
+        else if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            objectiveText.GetComponent<TMP_Text>().text = "Objective: Collect all the trash in the apartment!";
+        }
+        
         yield return new WaitForSeconds(5.3f);
         objectiveText.GetComponent<TMP_Text>().text = "";
         objectiveTrigger.SetActive(false);
