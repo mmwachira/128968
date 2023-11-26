@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PlayFab;
 using PlayFab.ClientModels;
+using Newtonsoft.Json;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
@@ -10,15 +11,16 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 { 
-    
-    [SerializeField] GameObject signUpTab, logInTab, startPanel, HUD;
-    public TMP_InputField username, userEmail, userPassword, userEmailLogin, userPasswordLogin;
-    public TMP_Text errorSignUp, errorLogin;
+    [Header ("Login")]
+    [SerializeField] GameObject signUpTab, logInTab, resetTab, startPanel, usernamebackground;
+    public TMP_InputField username, userEmail, userPassword, userEmailLogin, userPasswordLogin, userEmailRecovery;
+    public TMP_Text errorSignUp, errorLogin, showusername;
     string encryptedPassword;
     UTF8Encoding utf8 = new UTF8Encoding();
 
     [Space] 
 
+    [Header ("Menu")]
     public LevelLoader levelloader;
     public GameObject pausemenu;
     public GameObject menubackground;
@@ -47,6 +49,7 @@ public class MenuController : MonoBehaviour
     {
         signUpTab.SetActive(true);
         logInTab.SetActive(false);
+        resetTab.SetActive(false);
         errorSignUp.text = "";
         errorLogin.text = "";
     }
@@ -55,6 +58,16 @@ public class MenuController : MonoBehaviour
     {
         signUpTab.SetActive(false);
         logInTab.SetActive(true);
+        resetTab.SetActive(false);
+        errorSignUp.text = "";
+        errorLogin.text = "";
+    }
+
+    public void SwitchToResetTab()
+    {
+        signUpTab.SetActive(false);
+        logInTab.SetActive(false);
+        resetTab.SetActive(true);
         errorSignUp.text = "";
         errorLogin.text = "";
     }
@@ -75,17 +88,23 @@ public class MenuController : MonoBehaviour
     //Register/Login/ResetPassword
     public void SignUp()
     {
+        if (userPassword.text.Length < 6) 
+        {
+            errorSignUp.text = "Password too short!";
+            return;
+        }
         var registerRequest = new RegisterPlayFabUserRequest{
             Email = userEmail.text,
             Password = Encrypt(userPassword.text),
-            Username = username.text};
+            Username = username.text,
+            DisplayName = username.text};
         PlayFabClientAPI.RegisterPlayFabUser(registerRequest, RegisterSuccess, RegisterError);        
     }
 
     public void RegisterSuccess(RegisterPlayFabUserResult result) 
     {
-        PlayerPrefs.SetString("EMAIL", userEmailLogin.text);
-        PlayerPrefs.SetString("PASSWORD", userPasswordLogin.text);
+        //PlayerPrefs.SetString("EMAIL", userEmailLogin.text);
+        //PlayerPrefs.SetString("PASSWORD", userPasswordLogin.text);
         errorSignUp.text = "";
         errorLogin.text = "";
         StartGame();
@@ -97,37 +116,82 @@ public class MenuController : MonoBehaviour
 
 
     public void LogIn(){
-        var request = new LoginWithEmailAddressRequest {Email = userEmailLogin.text, Password = Encrypt(userPasswordLogin.text)};
+        var request = new LoginWithEmailAddressRequest {
+            Email = userEmailLogin.text,
+            Password = Encrypt(userPasswordLogin.text),
+            
+            InfoRequestParameters = new GetPlayerCombinedInfoRequestParams
+            {
+                GetPlayerProfile = true
+            }
+        };
         PlayFabClientAPI.LoginWithEmailAddress(request, LogInSuccess, LogInError);
     }
 
     public void LogInSuccess(LoginResult result){
         Debug.Log("Successful Login");
 
-        PlayerPrefs.SetString("EMAIL", userEmailLogin.text);
-        PlayerPrefs.SetString("PASSWORD", userPasswordLogin.text);
+        string name = null;
+        if(result.InfoResultPayload != null)
+        {
+           name = result.InfoResultPayload.PlayerProfile.DisplayName; 
+        }
+        
+
+        usernamebackground.SetActive(true);
+
+        showusername.text = "Welcome " + name; 
+        StartCoroutine(showUsername());
+
         errorSignUp.text = "";
         errorLogin.text = "";
         PlayFabManager.PFM.GetLeaderboard();
-        StartGame();
+        
     }
 
     public void LogInError(PlayFabError error){
         errorLogin.text = error.GenerateErrorReport();
     }
+
+    IEnumerator showUsername()
+    {
+        yield return new WaitForSeconds(3);
+        StartGame();
+    }
     
     
     public void ResetPasswordButton() {
-        var request = new SendAccountRecoveryEmailRequest {
-            Email = userEmailLogin.text,
-            TitleId = "38CDB"
+        var request = new SendAccountRecoveryEmailRequest 
+        {
+            Email = userEmailRecovery.text,
+            TitleId = "38CDB",
         };
+
         PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, LogInError);
     }
 
     void OnPasswordReset(SendAccountRecoveryEmailResult result) {
+        SwitchToLoginTab();
         errorLogin.text = "Password reset mail sent!";
     }   
+
+    void OnDataSend(UpdateUserDataResult result)
+    {
+        Debug.Log("Data sent successfully!");
+    }
+
+    public void SaveUsername()
+    {
+        var request = new UpdateUserDataRequest
+        {
+            Data = new Dictionary<string, string>
+            {
+                //"Username", characterEditor.Username
+                //"Username", JsonConvert.SerializeObject(characterBoxes[0].ReturnClass())
+            }
+        };
+        PlayFabClientAPI.UpdateUserData(request, OnDataSend, RegisterError);
+    }
 
     #endregion Login
 
