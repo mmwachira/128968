@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MenuController : MonoBehaviour
 { 
@@ -26,10 +27,37 @@ public class MenuController : MonoBehaviour
     public GameObject menubackground;
     public GameObject player;
     public AudioSource menumusic;
+    public AudioMixer audioMixer;
+    public TMPro.TMP_Dropdown resolutionDropdown;
+
+    Resolution[] resolutions;
 
     void Start()
     {
         levelloader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
+        
+        resolutions = Screen.resolutions;
+
+        resolutionDropdown.ClearOptions();
+
+        List<string> options = new List<string>();
+
+        int currentResolutionIndex = 0;
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width && 
+                resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
     }
 
     // Update is called once per frame
@@ -244,6 +272,26 @@ public class MenuController : MonoBehaviour
         Cursor.visible = false;
     }
 
+    public void SetResolution (int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    } 
+
+    public void setVolume(float volume)
+    {
+        audioMixer.SetFloat("Volume", volume);
+    }
+
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
+
+    public void SetFullscreen (bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+    }
 
     public void QuitGame ()
     {

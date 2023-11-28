@@ -25,7 +25,11 @@ public class ObjectivesManager : MonoBehaviour
         objectiveDisplay.SetActive(true);
         objectiveText.SetActive(true);
         objectiveDisplay.GetComponent<Animation>().Play("ObjectiveDisplayAnim");
-        if(SceneManager.GetActiveScene().buildIndex == 3)
+        if(SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            objectiveText.GetComponent<TMP_Text>().text = "Objective: Place all the dirty clothes in the laundry basket!";
+        }
+        else if(SceneManager.GetActiveScene().buildIndex == 3)
         {
             objectiveText.GetComponent<TMP_Text>().text = "Objective: Place all the dirty plates in the sink!";
         }

@@ -20,32 +20,7 @@ public class GameController : MonoBehaviour
     public AudioSource objectivecompletesound;
     
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //levelloader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Invoke("HideObjective", 3);
-
-        // if(Input.GetKeyDown(KeyCode.Escape))
-        // {
-        //     Objective.SetActive(false);
-        // }
-        // else
-        // {
-        //     Objective.SetActive(true);
-        // }
-    }
-
-    // void HideObjective()
-    // {
-    //     Objective.SetActive(false);
-    // }
-
+    
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Trash"))

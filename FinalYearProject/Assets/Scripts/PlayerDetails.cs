@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerDetails : MonoBehaviour
+[System.Serializable]
+public class PlayerDetails
 {
     public string username;
     public int level;

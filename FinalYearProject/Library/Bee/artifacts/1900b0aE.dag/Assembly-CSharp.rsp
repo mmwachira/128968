@@ -388,6 +388,7 @@
 "Assets/Scripts/PhysicsPickup.cs"
 "Assets/Scripts/PlayerDetails.cs"
 "Assets/Scripts/PlayFabManager.cs"
+"Assets/Scripts/SaveSystem.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"
