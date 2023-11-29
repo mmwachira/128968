@@ -66,8 +66,17 @@ public class MenuController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            gameIsPaused = !gameIsPaused;
-            PauseGame();
+            if(SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                gameIsPaused = gameIsPaused;
+            }
+            else
+            {
+                gameIsPaused = !gameIsPaused;
+                PauseGame();
+            }
+            //gameIsPaused = !gameIsPaused;
+            //PauseGame();
         }
     }
 

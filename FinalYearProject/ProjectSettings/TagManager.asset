@@ -9,6 +9,7 @@ TagManager:
   - LevelLoader
   - TrashCanLight
   - Trash
+  - Bedroom
   layers:
   - Default
   - TransparentFX

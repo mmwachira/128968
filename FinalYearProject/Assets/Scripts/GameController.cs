@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
     public int items = 0;
     public AudioSource paperdropsound;
     public AudioSource objectivecompletesound;
+    public AudioSource backgroundmusic;
+    public GameObject EndCredits;
     
 
     
@@ -34,7 +36,15 @@ public class GameController : MonoBehaviour
                 anim.SetBool("isComplete", true);
                 StartCoroutine(objectivesmanager.objComplete());
 
-                levelloader.Invoke("LoadNextLevel", 5);
+                if(SceneManager.GetActiveScene().buildIndex == 4)
+                {
+                    Invoke("gameComplete", 6);
+                }
+                else
+                {
+                    levelloader.Invoke("LoadNextLevel", 5);
+                }
+                
             }
             
         }
@@ -44,5 +54,13 @@ public class GameController : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(new Rect(1, 1, 200, 40), "Items Collected: " + items + "/5");
+
+    }
+
+    void gameComplete()   
+    {
+        backgroundmusic.Stop();
+        EndCredits.SetActive(true);
+        levelloader.Invoke("LoadMainMenu", 20);
     }
 }

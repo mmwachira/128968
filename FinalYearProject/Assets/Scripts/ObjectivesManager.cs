@@ -49,7 +49,15 @@ public class ObjectivesManager : MonoBehaviour
         objectiveDisplay.SetActive(true);
         objectiveText.SetActive(true);
         objectiveDisplay.GetComponent<Animation>().Play("ObjectiveDisplayAnim");
-        objectiveText.GetComponent<TMP_Text>().text = "Objective: Objective Complete! Proceeding to next level.";
+        if(SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            objectiveText.GetComponent<TMP_Text>().text = "All Objectives Complete! Proceeding to end credits.";        
+        }
+        else
+        {
+            objectiveText.GetComponent<TMP_Text>().text = "Objective: Objective Complete! Proceeding to next level.";
+        }
+        //objectiveText.GetComponent<TMP_Text>().text = "Objective: Objective Complete! Proceeding to next level.";
         yield return new WaitForSeconds(5.3f);
         objectiveText.GetComponent<TMP_Text>().text = "";
         objectiveTrigger.SetActive(false);

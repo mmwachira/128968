@@ -7,24 +7,18 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     public LevelLoader levelloader;
-    //public Animator transition;
-    //public float transitionTime = 1f;
     public GameObject loadingScreen;
     public Slider _loadingBar;
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    LoadNextLevel();
-       // }
-    }
 
 
     void OnCollisionEnter(Collision collision)
         {
             LoadNextLevel();
+        }
+
+        public void LoadMainMenu()
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 3));
         }
 
     public void LoadFirstLevel()
