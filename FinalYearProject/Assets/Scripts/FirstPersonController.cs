@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -17,6 +18,30 @@ using UnityEngine.UI;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+
+    // #region PlayerData
+    // public int level = 0;
+    // public int score = 0;
+
+    // public void SavePlayer()
+    // {
+    //     SaveSystem.SavePlayer(this);
+    // }
+
+    // public void LoadPlayer()
+    // {
+    //     PlayerDetails details = SaveSystem.LoadPlayer();
+
+    //     level = details.level;
+    //     score = details.score;
+
+    //     Vector3 position;
+    //     position.x = details.position[0];
+    //     position.y = details.position[1];
+    //     position.z = details.position[2];
+    //     transform.position = position;
+    // }
+    // #endregion
 
     #region Camera Movement Variables
 

@@ -16,6 +16,10 @@ public class PlayFabManager : MonoBehaviour
 
     public TMP_InputField username, userEmail, userPassword, userEmailLogin, userPasswordLogin;
     public TMP_Text errorSignUp, errorLogin;
+    public Text levelDisplay;
+    public Text itemsCollected;
+    public Text playerscore;
+
 
     public void OnEnable()
     {
@@ -33,78 +37,31 @@ public class PlayFabManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    // public void Start()
-    // {
-    //     if (PlayerPrefs.HasKey("EMAIL"))
-    //     {
-    //         userEmail.text = PlayerPrefs.GetString("EMAIL");
-    //         userPassword.text = PlayerPrefs.GetString("PASSWORD");
-    //         var request = new LoginWithEmailAddressRequest {Email = userEmailLogin.text, Password = userPasswordLogin.text};
-    //         PlayFabClientAPI.LoginWithEmailAddress(request, LogInSuccess, LogInError);
-    //     }
-    // }
 
-// #region Login
+    public int items = GameController.GC.items;
+    public int currentLevel;
 
-//     public void RegisterSuccess(RegisterPlayFabUserResult result) 
-//     {
-//         PlayerPrefs.SetString("EMAIL", userEmailLogin.text);
-//         PlayerPrefs.SetString("PASSWORD", userPasswordLogin.text);
-//         errorSignUp.text = "";
-//         errorLogin.text = "";
-//         StartGame();
-//     }
-
-//     public void RegisterError(PlayFabError error){
-//         errorSignUp.text = error.GenerateErrorReport();
-//     }
-
-
-//     public void LogInSuccess(LoginResult result){
-//         Debug.Log("Successful Login");
-
-//         PlayerPrefs.SetString("EMAIL", userEmailLogin.text);
-//         PlayerPrefs.SetString("PASSWORD", userPasswordLogin.text);
-//         errorSignUp.text = "";
-//         errorLogin.text = "";
-//         GetLeaderboard();
-//         StartGame();
-//     }
-
-//     public void LogInError(PlayFabError error){
-//         errorLogin.text = error.GenerateErrorReport();
-//     }
-    
-//     void StartGame(){
-//         startPanel.SetActive(false);
-//         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-//     }
-
-// #endregion Login
-
-
-    public int playerLevel;
-    public int gameLevel;
-
-    public int playerHighscore;
+    public int playerScore;
 
 #region PlayerStatistics
 
-    public void SendLeaderboard()
+    public void SendLeaderboard(int currentLevel, int playerScore, int items)
     {
-        PlayFabClientAPI.UpdatePlayerStatistics (new UpdatePlayerStatisticsRequest
+        //PlayFabClientAPI.UpdatePlayerStatistics (new UpdatePlayerStatisticsRequest
+        var request = new UpdatePlayerStatisticsRequest
         {
             //request.Statistics is a list, so multiple StatisticUpdate objects can be defined if required
             Statistics = new List<StatisticUpdate>
             {
-                new StatisticUpdate { StatisticName = "PlayerLevel", Value = playerLevel},
-                new StatisticUpdate { StatisticName = "PlayerHighScore", Value = playerHighscore},
-                new StatisticUpdate { StatisticName = "GameLevel", Value = gameLevel},
+                new StatisticUpdate { StatisticName = "CurrentLevel", Value = currentLevel},
+                new StatisticUpdate { StatisticName = "PlayerScore", Value = playerScore},
+                new StatisticUpdate { StatisticName = "Items", Value = items},
 
             }
-        },
-        result => {Debug.Log("User statistics updated"); },
-        error => {Debug.LogError(error.GenerateErrorReport()); });
+        };
+        PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnErrorShared);
+        //result => {Debug.Log("User statistics updated"); },
+        //error => {Debug.LogError(error.GenerateErrorReport()); });
     } 
 
     void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
@@ -123,32 +80,50 @@ public class PlayFabManager : MonoBehaviour
     void OnLeaderboardGet(GetPlayerStatisticsResult result)
     {
         Debug.Log("Received the following statistics:");
+
         foreach(var eachStat in result.Statistics)
         {
             Debug.Log("Statistic (" + eachStat.StatisticName + "): " + eachStat.Value);
             switch(eachStat.StatisticName)
             {
-                case "PlayerLevel":
-                    playerLevel = eachStat.Value;
+                case "CurrentLevel":
+                    currentLevel = eachStat.Value;
                     break;
-                case "PlayerHighScore":
-                    playerHighscore = eachStat.Value;
+                case "PlayerScore":
+                    playerScore = eachStat.Value;
                     break;   
-                case "GameLevel":
-                    gameLevel = eachStat.Value;
+                case "Items":
+                    items = eachStat.Value;
                     break;
                  
+            }    
+
+        }
+
+        UpdateUI();
+
+    }
+    
+    void UpdateUI()
+        {
+            // Assuming LevelDisplay is a Text component in your Canvas
+            if (GameController.GC.levelDisplay != null)
+            {
+                GameController.GC.levelDisplay.text = $"Level: {currentLevel}\nScore: {playerScore}\nItems: {items}";
+            }
+            else
+            {
+                Debug.LogWarning("LevelDisplay UI component not assigned!");
             }
         }
-    } 
-
+         
     //Build the request object and access the API
     public void StartCloudUpdatePlayerStats()
     {
         PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
         {
             FunctionName = "UpdatePlayerStats", //Arbitrary function name (must exist in uploaded Cloud .js file)
-            FunctionParameter = new {Level = playerLevel, PlayerHighScore = playerHighscore, GameLevel = gameLevel}, //The parameter provided to your function
+            FunctionParameter = new {Level = currentLevel, PlayerScore = playerScore, Items = items}, //The parameter provided to your function
             GeneratePlayStreamEvent = true, //Optional - Shows this event in PlayStream
         }, OnCloudUpdateStats, OnErrorShared);
         

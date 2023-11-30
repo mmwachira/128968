@@ -217,7 +217,7 @@ public class MenuController : MonoBehaviour
         Debug.Log("Data sent successfully!");
     }
 
-    public void SaveUsername()
+    public void SetUserData()
     {
         var request = new UpdateUserDataRequest
         {
@@ -234,6 +234,7 @@ public class MenuController : MonoBehaviour
 
     void StartGame(){
         startPanel.SetActive(false);
+        Camera.main.GetComponent<AudioListener>().enabled = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

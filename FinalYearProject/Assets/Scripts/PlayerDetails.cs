@@ -6,14 +6,21 @@ using UnityEngine.UI;
 [System.Serializable]
 public class PlayerDetails
 {
-    public string username;
+    public int items;
     public int level;
     public int score;
+    public float[] position;
     
-    public PlayerDetails(string username, int level, int score)
+    public PlayerDetails(GameController player)
     {
-        this.username = username;
-        this.level = level;
-        this.score = score;
+        items = player.items;
+        level = player.level;
+        score = player.score;
+
+        position = new float[3];
+        position[0] = player.transform.position.x;
+        position[1] = player.transform.position.y;
+        position[2] = player.transform.position.z;
+
     }
 }

@@ -386,6 +386,7 @@
 "Assets/Scripts/ObjectivesManager.cs"
 "Assets/Scripts/opencloseDoor.cs"
 "Assets/Scripts/PhysicsPickup.cs"
+"Assets/Scripts/Player.cs"
 "Assets/Scripts/PlayerDetails.cs"
 "Assets/Scripts/PlayFabManager.cs"
 "Assets/Scripts/SaveSystem.cs"
